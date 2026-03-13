@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Die 7 teuersten Fehler beim Hausbau</title>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #f7f2ec;
+    --white:     #ffffff;
+    --ink:       #2d2b28;
+    --ink-mid:   #4a4744;
+    --accent:    #c4956a;   /* Hausbaukurs-Gold */
+    --accent-dark: #9a7050;
+    --blob:      #e8dfd4;
+    --rule:      #dbd3c8;
+    --url-color: #c4956a;
+  }
+
+  body {
+    font-family: 'Lato', Arial, sans-serif;
+    background: #bbb;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── PAGE ── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--bg);
+    margin: 10mm auto;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .page::before { display: none; }
+
+  /* Blob unten rechts */
+  .page::after {
+    content: '';
+    position: absolute;
+    bottom: -28mm;
+    right: -18mm;
+    width: 80mm;
+    height: 80mm;
+    border-radius: 50%;
+    background: var(--blob);
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* ── LOGO (top right) ── */
+  .logo {
+    position: absolute;
+    top: 8mm;
+    right: 8mm;
+    z-index: 10;
+  }
+
+  .logo img {
+    height: 26px;
+    width: auto;
+  }
+
+  /* ── LEFT ACCENT BAR ── */
+  .accent-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    opacity: 0.35;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    background: var(--bg);
+    min-height: 297mm;
+    display: flex;
+    flex-direction: column;
+    padding: 14mm 16mm 16mm;
+  }
+
+  .cover::before { display: none; }
+  .cover::after  { display: none; }
+
+  /* Große Deko-Zahl */
+  .cover-deco-number {
+    position: absolute;
+    right: -6mm;
+    top: 30mm;
+    font-family: 'Bitter', Georgia, serif;
+    font-size: 260pt;
+    font-weight: 900;
+    color: rgba(196,149,106,0.07);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  /* Deko-Blob Cover */
+  .cover-blob-tl {
+    position: absolute;
+    top: -30mm;
+    left: -20mm;
+    width: 90mm;
+    height: 90mm;
+    border-radius: 50%;
+    background: var(--blob);
+    opacity: 0.5;
+  }
+
+  .cover-blob-br {
+    position: absolute;
+    bottom: -35mm;
+    right: -20mm;
+    width: 110mm;
+    height: 110mm;
+    border-radius: 50%;
+    background: var(--blob);
+    opacity: 0.4;
+  }
+
+  .cover .logo {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: auto;
+    z-index: 2;
+  }
+
+  .cover .logo img {
+    height: 52px;
+    width: auto;
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    padding-bottom: 0;
+  }
+
+  .cover-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8mm;
+  }
+
+  .cover-tag-line {
+    width: 28px;
+    height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .cover-tag-text {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .cover-title {
+    font-family: 'Bitter', Georgia, serif;
+    font-size: 36pt;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 8mm;
+  }
+
+  .cover-title .accent { color: var(--accent); }
+
+  .cover-rule {
+    width: 44px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 6mm;
+  }
+
+  .cover-sub {
+    font-size: 11pt;
+    line-height: 1.65;
+    color: var(--ink-mid);
+    max-width: 130mm;
+    margin-bottom: 12mm;
+  }
+
+  .cover-author {
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .cover-author-sub {
+    font-size: 8pt;
+    color: var(--ink-mid);
+    margin-top: 1mm;
+    opacity: 0.65;
+  }
+
+  /* ── CONTENT PAGE ── */
+  .content-page {
+    min-height: 297mm;
+    display: flex;
+    flex-direction: column;
+    padding: 14mm 14mm 12mm 17mm;
+  }
+
+  .page-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10mm;
+  }
+
+  .page-tag-diamond {
+    font-size: 9pt;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .page-tag-text {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ── INTRO ── */
+  .intro-headline {
+    font-family: 'Bitter', Georgia, serif;
+    font-size: 25pt;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.18;
+    margin-bottom: 8mm;
+  }
+
+  .intro-headline .accent { color: var(--accent); }
+
+  .body-text {
+    font-size: 10.5pt;
+    line-height: 1.8;
+    color: var(--ink-mid);
+    margin-bottom: 5mm;
+  }
+
+  .body-text strong { color: var(--ink); font-weight: 700; }
+
+  .rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 6mm 0;
+  }
+
+  .sign {
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-top: 5mm;
+  }
+
+  .sign-sub {
+    font-size: 8.5pt;
+    color: var(--accent);
+    margin-top: 1mm;
+  }
+
+  /* ── ERROR PAGES ── */
+  .error-number {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2mm;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .error-number::before {
+    content: '♦';
+    font-size: 10pt;
+  }
+
+  .error-headline {
+    font-family: 'Bitter', Georgia, serif;
+    font-size: 20pt;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 6mm;
+  }
+
+  .error-headline .accent { color: var(--accent); }
+
+  .section-head {
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-top: 5mm;
+    margin-bottom: 2.5mm;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .section-head::before {
+    content: '♦';
+    color: var(--accent);
+    font-size: 8pt;
+  }
+
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 4mm;
+  }
+
+  .bullet-list li {
+    font-size: 10pt;
+    line-height: 1.7;
+    color: var(--ink-mid);
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 1mm;
+  }
+
+  .bullet-list li::before {
+    content: '♦';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 7pt;
+    top: 3px;
+  }
+
+  .bullet-list li strong { color: var(--ink); font-weight: 700; }
+
+  .callout {
+    border-left: 3px solid var(--accent);
+    padding: 3mm 5mm;
+    margin: 4mm 0;
+    background: rgba(196,149,106,0.06);
+    position: relative;
+    z-index: 2;
+  }
+
+  .callout-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5mm;
+  }
+
+  .callout p {
+    font-size: 10pt;
+    line-height: 1.65;
+    color: var(--ink-mid);
+  }
+
+  .callout p strong { color: var(--ink); }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4mm 0;
+    font-size: 9.5pt;
+    position: relative;
+    z-index: 2;
+  }
+
+  th {
+    background: var(--ink);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 8pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2.5mm 3.5mm;
+    text-align: left;
+  }
+
+  td {
+    padding: 2.5mm 3.5mm;
+    color: var(--ink-mid);
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  td strong { color: var(--ink); }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.45); }
+
+  /* ── PAGE FOOTER ── */
+  .page-footer {
+    margin-top: auto;
+    padding-top: 5mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--rule);
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-url {
+    font-size: 7.5pt;
+    color: var(--url-color);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-page {
+    font-size: 7.5pt;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .footer-page::before { content: '♦'; font-size: 6pt; }
+
+  /* ── CTA PAGE ── */
+  .cta-page {
+    background: var(--ink);
+    min-height: 297mm;
+  }
+
+  .cta-page::before, .cta-page::after {
+    background: rgba(196,149,106,0.06);
+  }
+
+  .cta-inner {
+    padding: 14mm 14mm 12mm 17mm;
+    min-height: 297mm;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-eyebrow {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3mm;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cta-eyebrow::before { content: '♦'; font-size: 9pt; }
+
+  .cta-headline {
+    font-family: 'Bitter', Georgia, serif;
+    font-size: 28pt;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 7mm;
+  }
+
+  .cta-headline .accent { color: var(--accent); }
+
+  .cta-body {
+    font-size: 10.5pt;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 6mm;
+    max-width: 150mm;
+  }
+
+  .cta-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10mm;
+  }
+
+  .cta-list li {
+    font-size: 10pt;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 1.5mm;
+  }
+
+  .cta-list li::before {
+    content: '♦';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 8pt;
+    top: 2px;
+  }
+
+  .coupon-block {
+    border: 1px solid rgba(196,149,106,0.3);
+    border-radius: 3px;
+    padding: 6mm 7mm;
+    margin-bottom: 7mm;
+    display: flex;
+    align-items: center;
+    gap: 8mm;
+    background: rgba(196,149,106,0.07);
+  }
+
+  .coupon-left { flex: 1; }
+
+  .coupon-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2mm;
+  }
+
+  .coupon-code {
+    font-size: 22pt;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 0.08em;
+  }
+
+  .coupon-right {
+    text-align: right;
+    padding-left: 8mm;
+    border-left: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .coupon-old {
+    font-size: 9pt;
+    color: rgba(255,255,255,0.3);
+    text-decoration: line-through;
+    margin-bottom: 1mm;
+  }
+
+  .coupon-new {
+    font-size: 22pt;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .coupon-note {
+    font-size: 7pt;
+    color: rgba(255,255,255,0.35);
+    margin-top: 1mm;
+  }
+
+  .cta-url-line {
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 5mm;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cta-url-line::before { content: '♦'; font-size: 10pt; }
+
+  .cta-footer {
+    margin-top: auto;
+    padding-top: 6mm;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ── PRINT ── */
+  @page { size: A4; margin: 0; }
+
+  @media print {
+    body { background: none; }
+    .page { margin: 0; width: 210mm; height: 297mm; min-height: unset; page-break-after: always; overflow: hidden; }
+    .page:last-child { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- ══════════════════════════════════
+     COVER
+══════════════════════════════════ -->
+<div class="page cover">
+
+  <div class="cover-blob-tl"></div>
+  <div class="cover-blob-br"></div>
+  <div class="cover-deco-number">7</div>
+
+  <div class="logo">
+    <img src="logo.png" alt="Hausbaukurs">
+  </div>
+
+  <div class="cover-content">
+    <div class="cover-tag">
+      <div class="cover-tag-line"></div>
+      <span class="cover-tag-text">Kostenloser Leitfaden</span>
+    </div>
+
+    <h1 class="cover-title">
+      Die <span class="accent">7 teuersten</span><br>
+      Fehler beim<br>
+      Hausbau
+    </h1>
+
+    <div class="cover-rule"></div>
+
+    <p class="cover-sub">Was ein Hausbau wirklich kostet. Und wie du die häufigsten Fehler vermeidest, bevor sie passieren.</p>
+
+    <p class="cover-author">Julian und das Team vom Hausbaukurs</p>
+    <p class="cover-author-sub">Architekt · Baubiologin · Finanzierungsberater · Fachanwalt für Baurecht</p>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════
+     SEITE 2 — EINLEITUNG
+══════════════════════════════════ -->
+<div class="page content-page">
+
+  <div class="accent-bar"></div>
+  <div class="logo"><img src="logo.png" alt="Hausbaukurs"></div>
+
+  <div class="page-tag">
+    <span class="page-tag-diamond">♦</span>
+    <span class="page-tag-text">Vorwort</span>
+  </div>
+
+  <h2 class="intro-headline">Herzlichen Glückwunsch,<br>du <span class="accent">baust.</span></h2>
+
+  <p class="body-text">Das ist aufregend. Und gleichzeitig: Du stehst vor einer der größten finanziellen Entscheidungen deines Lebens. Fehler kosten hier nicht ein paar hundert Euro, sondern zehntausende.</p>
+
+  <p class="body-text">Wir haben diese Liste nicht geschrieben, um dich zu erschrecken. Sondern damit du die Fehler, die wir immer wieder sehen, <strong>gar nicht erst machst.</strong></p>
+
+  <p class="body-text">Fast alle lassen sich vermeiden, wenn man weiß, wo sie lauern. Und genau das zeigen wir dir auf den nächsten Seiten.</p>
+
+  <hr class="rule">
+
+  <p class="sign">Julian und das Team vom Hausbaukurs</p>
+  <p class="sign-sub">Architekt · Baubiologin · Finanzierungsberater · Fachanwalt für Baurecht</p>
+
+  <div class="page-footer">
+    <span class="footer-url">hausbaukurs.de/kurs</span>
+    <span class="footer-page">2</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     FEHLER 1
+══════════════════════════════════ -->
+<div class="page content-page">
+
+  <div class="accent-bar"></div>
+  <div class="logo"><img src="logo.png" alt="Hausbaukurs"></div>
+
+  <div class="page-tag">
+    <span class="page-tag-diamond">♦</span>
+    <span class="page-tag-text">Fehler 1 von 7</span>
+  </div>
+
+  <p class="error-number">Fehler 1</p>
+  <h2 class="error-headline"><span class="accent">Keinen</span> Kostenpuffer einplanen</h2>
+
+  <p class="body-text">Fast jeder Bauherr plant sein Budget bis auf den letzten Euro aus. Verständlich, denn Häuser sind teuer. Das Problem: Ein Hausbau läuft nie exakt nach Plan. Und wer keinen Puffer hat, steht beim ersten Rückschlag vor einer Nachfinanzierung, zu schlechteren Konditionen oder gar nicht.</p>
+
+  <p class="section-head">Typische ungeplante Kostentreiber <span style="font-weight:400;color:var(--ink-mid)">(Erfahrungswerte, je nach Region und Projekt abweichend)</span></p>
+  <table>
+    <thead>
+      <tr><th>Ursache</th><th>Typische Mehrkosten</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Schlechter Baugrund (Bodengutachten)</td><td><strong>15.000 – 30.000 €</strong></td></tr>
+      <tr><td>Altlasten oder Kampfmittel auf dem Grundstück</td><td><strong>10.000 – 50.000 €</strong></td></tr>
+      <tr><td>Materialpreissteigerungen während der Bauzeit</td><td><strong>3 – 8 % der Bausumme</strong></td></tr>
+      <tr><td>Sonderwünsche im laufenden Bau</td><td><strong>5.000 – 20.000 €</strong></td></tr>
+      <tr><td>Bauverzögerung: Doppelkosten Miete + Kredit</td><td><strong>1.000 – 2.500 € / Monat</strong></td></tr>
+      <tr><td>Nachbesserungen und Mängelbeseitigung</td><td><strong>2.000 – 15.000 €</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-head">Wie viel Puffer du brauchst</p>
+  <p class="body-text">Die Faustregel: <strong>15–20 % der Bausumme</strong> als Reserve einplanen. Ein Puffer sollte möglichst als frei verfügbare Liquiditätsreserve vorhanden sein und nicht vollständig auf Kante geplant werden.</p>
+
+  <table>
+    <thead>
+      <tr><th>Bausumme</th><th>Empfohlener Puffer</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>300.000 €</td><td><strong>45.000 – 60.000 €</strong></td></tr>
+      <tr><td>400.000 €</td><td><strong>60.000 – 80.000 €</strong></td></tr>
+      <tr><td>500.000 €</td><td><strong>75.000 – 100.000 €</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p class="callout-label">Was passiert ohne Puffer</p>
+    <p>Du musst nachfinanzieren. Banken bewerten eine laufende Baustelle mit bereits ausgereiztem Kredit als Hochrisiko. Wenn überhaupt ein Nachkredit genehmigt wird, dann zu deutlich schlechteren Zinsen. Im schlimmsten Fall drohen Baustopp, teure Nachfinanzierung oder erheblicher finanzieller Druck.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-url">hausbaukurs.de/kurs</span>
+    <span class="footer-page">3</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     FEHLER 2
+══════════════════════════════════ -->
+<div class="page content-page">
+
+  <div class="accent-bar"></div>
+  <div class="logo"><img src="logo.png" alt="Hausbaukurs"></div>
+
+  <div class="page-tag">
+    <span class="page-tag-diamond">♦</span>
+    <span class="page-tag-text">Fehler 2 von 7</span>
+  </div>
+
+  <p class="error-number">Fehler 2</p>
+  <h2 class="error-headline">Das Grundstück nicht <span class="accent">gründlich prüfen</span></h2>
+
+  <p class="body-text">Menschen verlieben sich in ein Grundstück. Lage stimmt, Preis passt, die Bebaubarkeit scheint gesichert. Was folgt, ist oft eine schnelle Unterschrift. Die Überraschungen kommen danach. Viele dieser Überraschungen wären für ein paar tausend Euro vermeidbar gewesen.</p>
+
+  <p class="section-head">Die Pflicht-Prüfliste vor dem Kauf <span style="font-weight:400;color:var(--ink-mid)">(Kosten und Risiken sind typische Erfahrungswerte)</span></p>
+  <table>
+    <thead>
+      <tr><th>Prüfpunkt</th><th>Kosten der Prüfung</th><th>Risiko wenn übersprungen</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Bebauungsplan</strong> (B-Plan beim Baurechtsamt)</td><td>kostenlos</td><td>Haus nicht wie geplant baubar</td></tr>
+      <tr><td><strong>Bodengutachten</strong> (Tragfähigkeit, Grundwasser)</td><td>1.500 – 3.000 €</td><td>Mehrkosten Fundament: 15.000–30.000 €</td></tr>
+      <tr><td><strong>Altlastenkataster</strong> (Umweltamt)</td><td>kostenlos bis 300 €</td><td>Sanierungspflicht: 20.000–100.000 €</td></tr>
+      <tr><td><strong>Kampfmittelauskunft</strong> (je nach Bundesland)</td><td>kostenlos bis 500 €</td><td>Räumung: 5.000–50.000 €</td></tr>
+      <tr><td><strong>Erschließungszustand</strong> (Kanal, Wasser, Strom)</td><td>Anfrage beim Versorger</td><td>Erschließung nachträglich: 10.000–30.000 €</td></tr>
+      <tr><td><strong>Grundbuch</strong> (Wegerechte, Dienstbarkeiten)</td><td>20 – 50 €</td><td>Nutzungsrechte Dritter, die dich binden</td></tr>
+      <tr><td><strong>Baulastenverzeichnis</strong> (separat bei der Bauaufsichtsbehörde)</td><td>ca. 20 – 80 €</td><td>Bauverpflichtungen, die das Grundstück einschränken</td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-head">Was der Bebauungsplan wirklich vorschreibt</p>
+  <p class="body-text">Viele Käufer denken, ein Baugrundstück ist ein freies Baugrundstück. Der B-Plan regelt aber oft sehr konkret: maximale Gebäudehöhe und Firstrichtung, erlaubte Dachformen und -neigungen, Abstandsflächen zu Nachbarn und Straße, GRZ (Grundflächenzahl) und GFZ (Geschossflächenzahl). Was du bauen willst, muss dazu passen. Wenn nicht, brauchst du eine Ausnahmegenehmigung, die genehmigt werden kann oder auch nicht.</p>
+
+  <div class="callout">
+    <p class="callout-label">Vor der Unterschrift</p>
+    <p>Wenn das Bodengutachten noch aussteht, sollte mit dem Notar geprüft werden, ob eine aufschiebende Bedingung oder ein vertragliches Rücktrittsrecht vereinbart werden kann. Ob ein kostenfreier Ausstieg möglich ist, hängt von der konkreten Vertragsgestaltung ab.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-url">hausbaukurs.de/kurs</span>
+    <span class="footer-page">4</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     FEHLER 3
+══════════════════════════════════ -->
+<div class="page content-page">
+
+  <div class="accent-bar"></div>
+  <div class="logo"><img src="logo.png" alt="Hausbaukurs"></div>
+
+  <div class="page-tag">
+    <span class="page-tag-diamond">♦</span>
+    <span class="page-tag-text">Fehler 3 von 7</span>
+  </div>
+
+  <p class="error-number">Fehler 3</p>
+  <h2 class="error-headline">Den Bauvertrag <span class="accent">ohne rechtliche Prüfung</span> unterschreiben</h2>
+
+  <p class="body-text">Bauverträge sind lang, juristisch formuliert, und meistens vom Bauunternehmer aufgesetzt. Das heißt: Sie sind in erster Linie für den Bauunternehmer geschrieben. Was auf den ersten Blick solide klingt, kann bei Problemen erhebliche finanzielle Folgen für dich haben.</p>
+
+  <p class="section-head">Typische Fallen in schlecht formulierten Verträgen</p>
+  <ul class="bullet-list">
+    <li><strong>Zu frühe Zahlungsplan-Stufen:</strong> Wenn 80 % des Kaufpreises fällig sind, bevor das Dach dicht ist, verlierst du jeden Hebel bei Mängeln. Abschlagszahlungen sollten dem tatsächlichen Baufortschritt entsprechen. Bei Verbraucherbauverträgen schreibt § 650m BGB zudem vor, dass Abschläge insgesamt 90 % der Vergütung nicht übersteigen dürfen.</li>
+    <li><strong>Pauschalpreise mit versteckter Ausschlussklausel:</strong> „Pauschalpreis gemäß Leistungsbeschreibung" klingt gut. Steht aber im Leistungsverzeichnis nicht drin, was du erwartest, ist es eine Sonderleistung, die extra berechnet wird.</li>
+    <li><strong>Ungenau definierte Baustoffe:</strong> „Innentüren in handelsüblicher Qualität" erlaubt dem Unternehmer, die günstigste Variante zu verbauen. Konkrete Hersteller, Serien und Qualitätsstufen müssen im Vertrag stehen.</li>
+    <li><strong>Vertragsstrafe ohne Wirkung:</strong> Viele Vertragsstrafen greifen nur, wenn du sie explizit bei Abnahme vorbehaltest. Wer das nicht weiß, verliert seinen Anspruch.</li>
+    <li><strong>Mängelverjährung verkürzt:</strong> Nach § 634a BGB beträgt die Verjährungsfrist für Mängelansprüche bei Bauwerken grundsätzlich 5 Jahre ab Abnahme. Abweichende Regelungen in Verträgen sollten immer anwaltlich geprüft werden, weil ihre Wirksamkeit stark vom Einzelfall abhängt.</li>
+  </ul>
+
+  <p class="section-head">Was eine Vertragsanalyse beim Anwalt abdeckt</p>
+  <ul class="bullet-list">
+    <li>Zahlungsplan rechtlich prüfen, insbesondere auf Baufortschritt, Verbraucherbauvertrag und zulässige Abschlagsregelung</li>
+    <li>Leistungsverzeichnis auf Vollständigkeit und Eindeutigkeit</li>
+    <li>Abnahmeklauseln und Mängelrechte</li>
+    <li>Gewährleistungsfristen und Bürgschaftsregelungen</li>
+    <li>Insolvenzabsicherung (Fertigstellungsbürgschaft)</li>
+  </ul>
+
+  <div class="callout">
+    <p class="callout-label">Kosten vs. Nutzen</p>
+    <p>Eine Vertragsanalyse durch einen Fachanwalt für Baurecht kostet <strong>500–1.500 €</strong>. Ein Rechtsstreit über einen schlechten Vertrag kostet im Schnitt das <strong>10- bis 50-fache</strong>. Abgesehen vom Stress und Zeitverlust während des laufenden Baus.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-url">hausbaukurs.de/kurs</span>
+    <span class="footer-page">5</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     FEHLER 4
+══════════════════════════════════ -->
+<div class="page content-page">
+
+  <div class="accent-bar"></div>
+  <div class="logo"><img src="logo.png" alt="Hausbaukurs"></div>
+
+  <div class="page-tag">
+    <span class="page-tag-diamond">♦</span>
+    <span class="page-tag-text">Fehler 4 von 7</span>
+  </div>
+
+  <p class="error-number">Fehler 4</p>
+  <h2 class="error-headline">Eigenleistung <span class="accent">massiv überschätzen</span></h2>
+
+  <p class="body-text">„Das kann ich selbst machen" spart auf dem Papier bares Geld. Viele Banken berücksichtigen realistisch nachweisbare Eigenleistungen teilweise als ersetztes Eigenkapital. Das Problem: Viele unterschätzen den Zeit- und Koordinationsaufwand erheblich. Und die Konsequenzen, wenn es nicht klappt, sind teuer.</p>
+
+  <p class="section-head">Was Eigenleistung wirklich bedeutet</p>
+  <table>
+    <thead>
+      <tr><th>Gewerk</th><th>DIY realistisch?</th><th>Zeitaufwand</th><th>Risiko wenn schlecht ausgeführt</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Malerarbeiten innen</td><td>Ja</td><td>2–4 Wochen</td><td>Gering</td></tr>
+      <tr><td>Gartenanlage / Außenanlagen</td><td>Ja</td><td>2–6 Wochen</td><td>Gering</td></tr>
+      <tr><td>Fliesenarbeiten Bad</td><td>Eingeschränkt</td><td>1–3 Wochen</td><td>Mittel (Dichtigkeit)</td></tr>
+      <tr><td>Trockenbau / Rigips</td><td>Eingeschränkt</td><td>1–3 Wochen</td><td>Mittel (Schallschutz)</td></tr>
+      <tr><td>Estrich verlegen</td><td>Nein</td><td>n. a.</td><td>Hoch (Risse, Feuchte)</td></tr>
+      <tr><td>Elektro, Gas, Heizung, Sanitär</td><td>Nein</td><td>n. a.</td><td>Sehr hoch; sicherheitsrelevante Arbeiten nur durch qualifizierte Fachbetriebe ausführen oder abnehmen lassen</td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-head">Das Koordinationsproblem</p>
+  <p class="body-text">Deine Eigenleistung muss in den Bauablauf passen. Wenn du sagst „Ich mache die Malerarbeiten selbst", brauchen alle nachfolgenden Gewerke einen Termin von dir. Wer nicht rechtzeitig fertig ist, hält Handwerker auf, die dann abziehen und einen neuen Termin brauchen. Oft dauert das Wochen.</p>
+
+  <p class="section-head">Was wirklich spart und was nicht</p>
+  <ul class="bullet-list">
+    <li><strong>Gut geeignet:</strong> Malerarbeiten, Bodenbelag verlegen (Klicksystem), Gartenanlage, einfache Außenanlagen, Umzug und Reinigung</li>
+    <li><strong>Nur mit Erfahrung:</strong> Fliesen, Trockenbau, Dämmarbeiten an der Außenhülle</li>
+    <li><strong>Nur Fachbetrieb:</strong> Sicherheitsrelevante Arbeiten wie Tragwerk, Dachabdichtung, Elektro, Gas, Heizung und Sanitär sollten grundsätzlich von qualifizierten Fachbetrieben ausgeführt werden</li>
+  </ul>
+
+  <div class="callout">
+    <p class="callout-label">Die ehrliche Rechnung</p>
+    <p>Wer 40 h/Woche arbeitet und ein Kleinkind hat, sollte realistisch mit maximal 10–15 Stunden Eigenleistung pro Woche rechnen. Viele planen mit dem Dreifachen. Das Ergebnis ist Burnout und Terminverzug.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-url">hausbaukurs.de/kurs</span>
+    <span class="footer-page">6</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     FEHLER 5
+══════════════════════════════════ -->
+<div class="page content-page" style="padding-top:10mm;padding-bottom:10mm;">
+
+  <div class="accent-bar"></div>
+  <div class="logo"><img src="logo.png" alt="Hausbaukurs"></div>
+
+  <div class="page-tag" style="margin-bottom:6mm;">
+    <span class="page-tag-diamond">♦</span>
+    <span class="page-tag-text">Fehler 5 von 7</span>
+  </div>
+
+  <p class="error-number">Fehler 5</p>
+  <h2 class="error-headline">Die <span class="accent">Gewerke-Reihenfolge</span> nicht verstehen</h2>
+
+  <p class="body-text" style="margin-bottom:3mm;">Ein Hausbau ist ein logistisches Puzzle mit 15–25 verschiedenen Gewerken. Jedes hat seinen festen Platz in der Abfolge. Wer die Reihenfolge nicht kennt, macht teure Fehler. Verbaute Arbeit wieder ausbauen kostet doppelt.</p>
+
+  <p class="section-head">Die grobe Bauabfolge <span style="font-weight:400;color:var(--ink-mid)">(vereinfacht, je nach Bauweise und Haustechnikkonzept abweichend)</span></p>
+  <table style="font-size:8.5pt;margin:2mm 0;">
+    <thead>
+      <tr><th>#</th><th>Phase</th><th>Kritische Abhängigkeit</th></tr>
+    </thead>
+    <tbody style="--td-pad:1.8mm 3mm;">
+      <tr><td style="padding:1.8mm 3mm;">1</td><td style="padding:1.8mm 3mm;">Erdarbeiten, Fundament, Bodenplatte</td><td style="padding:1.8mm 3mm;">Bodengutachten muss vorliegen</td></tr>
+      <tr><td style="padding:1.8mm 3mm;">2</td><td style="padding:1.8mm 3mm;">Rohbau: Wände, Decken, Dachstuhl</td><td style="padding:1.8mm 3mm;">Statik und Pläne freigegeben</td></tr>
+      <tr><td style="padding:1.8mm 3mm;">3</td><td style="padding:1.8mm 3mm;">Dach dicht (Eindeckung)</td><td style="padding:1.8mm 3mm;">Erst dann: Innenausbau beginnen</td></tr>
+      <tr><td style="padding:1.8mm 3mm;">4</td><td style="padding:1.8mm 3mm;">Fenster und Außentüren einbauen</td><td style="padding:1.8mm 3mm;">Maße 8–12 Wochen vorher beauftragen</td></tr>
+      <tr><td style="padding:1.8mm 3mm;">5</td><td style="padding:1.8mm 3mm;">Rohinstallation: Elektro, Heizung, Sanitär</td><td style="padding:1.8mm 3mm;">Leitungsführung vor Estrich festlegen</td></tr>
+      <tr><td style="padding:1.8mm 3mm;">6</td><td style="padding:1.8mm 3mm;">Dämmung (Wände, Dach, Keller)</td><td style="padding:1.8mm 3mm;">Vor Innenputz und Estrich abschließen</td></tr>
+      <tr><td style="padding:1.8mm 3mm;">7</td><td style="padding:1.8mm 3mm;">Innenputz</td><td style="padding:1.8mm 3mm;">Dach dicht, Fenster eingebaut</td></tr>
+      <tr><td style="padding:1.8mm 3mm;">8</td><td style="padding:1.8mm 3mm;">Estrich</td><td style="padding:1.8mm 3mm;">Trockenphasen einhalten (4–8 Wochen)</td></tr>
+      <tr><td style="padding:1.8mm 3mm;">9</td><td style="padding:1.8mm 3mm;">Fliesen, Bodenbelag, Malerarbeiten</td><td style="padding:1.8mm 3mm;">Estrich vollständig trocken</td></tr>
+      <tr><td style="padding:1.8mm 3mm;">10</td><td style="padding:1.8mm 3mm;">Sanitär, Heizung fertigstellen, Elektro</td><td style="padding:1.8mm 3mm;">Vor Einbauküche und Möbel</td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-head" style="margin-top:3mm;">Kritische Lieferzeiten</p>
+  <ul class="bullet-list" style="margin-bottom:3mm;">
+    <li style="padding-bottom:1mm;"><strong>Fenster und Haustüren:</strong> 8–16 Wochen. Zu spät bestellt bedeutet offene Baustelle im Winter.</li>
+    <li style="padding-bottom:1mm;"><strong>Treppen (Sonderanfertigung):</strong> 6–10 Wochen. Ohne Treppe kein Ausbau im Obergeschoss.</li>
+    <li style="padding-bottom:1mm;"><strong>Photovoltaik / Wärmepumpe:</strong> 4–12 Wochen. Vorinstallation muss beim Rohbau eingeplant sein.</li>
+  </ul>
+
+  <div class="callout">
+    <p class="callout-label">Klassischer Fehler</p>
+    <p>Elektriker verlegt Leitungen nach Plan. Dann ändert sich der Grundriss leicht. Der Estrich ist aber schon gegossen. Ergebnis: Stemmen, neu verlegen, neu glätten. Mehrkosten: <strong>3.000–8.000 €</strong> für eine kleine Planungsänderung.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-url">hausbaukurs.de/kurs</span>
+    <span class="footer-page">7</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     FEHLER 6
+══════════════════════════════════ -->
+<div class="page content-page">
+
+  <div class="accent-bar"></div>
+  <div class="logo"><img src="logo.png" alt="Hausbaukurs"></div>
+
+  <div class="page-tag">
+    <span class="page-tag-diamond">♦</span>
+    <span class="page-tag-text">Fehler 6 von 7</span>
+  </div>
+
+  <p class="error-number">Fehler 6</p>
+  <h2 class="error-headline">Entscheidungen zur <span class="accent">falschen Zeit</span> treffen</h2>
+
+  <p class="body-text">Im Hausbau gibt es für jede Entscheidung einen richtigen Zeitpunkt. Zu früh entschieden, dann ändert sich der Plan und du zahlst Storno. Zu spät entschieden, dann wartet die Baustelle auf dich. Handwerker im Stillstand sind teuer.</p>
+
+  <p class="section-head">Wann muss was entschieden sein?</p>
+  <table>
+    <thead>
+      <tr><th>Vorlaufzeit</th><th>Was entschieden sein muss</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>12+ Monate</strong> vor Baubeginn</td><td>Grundstück, Architekt, Haustyp, grobe Finanzierung</td></tr>
+      <tr><td><strong>6–9 Monate</strong></td><td>Grundriss final, Haustechnikkonzept (Heizung, PV), Bauantrag stellen</td></tr>
+      <tr><td><strong>3–6 Monate</strong></td><td>Fenster und Haustüren beauftragen, Treppe auswählen, Bauvertrag abschließen</td></tr>
+      <tr><td><strong>8–12 Wochen</strong></td><td>Fliesen auswählen, Sanitärobjekte festlegen, Elektroplanung finalisieren</td></tr>
+      <tr><td><strong>4–6 Wochen</strong></td><td>Bodenbelag, Farben, Innentüren, Lichtplanung</td></tr>
+      <tr><td><strong>2 Wochen</strong></td><td>Küchenmontage koordinieren, Außenanlage beauftragen</td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-head">Was passiert bei Entscheidungen zur falschen Zeit</p>
+  <ul class="bullet-list">
+    <li><strong>Küche zu früh geplant:</strong> Grundrissänderung bedeutet Storno bis <strong>20 % des Küchenpreises</strong></li>
+    <li><strong>Fliesen zu spät ausgewählt:</strong> Sonderbestellung statt Lagerware verdoppelt den Preis und verzögert die Verlegung</li>
+    <li><strong>Elektroplanung zu spät finalisiert:</strong> Nachträgliche Leitungen im fertigen Trockenbau kosten <strong>150–400 € pro Steckdose</strong></li>
+    <li><strong>Außenanlage vergessen:</strong> Erschließungsmaßnahmen nach Fertigstellung kosten bis zu <strong>40 % mehr</strong>, weil der Zugang für Maschinen fehlt</li>
+  </ul>
+
+  <div class="callout">
+    <p class="callout-label">Die Faustregel</p>
+    <p>Alles, was ein Handwerker für seine Arbeit braucht, muss <strong>4–8 Wochen vorher</strong> schriftlich bestätigt und geliefert sein. Plane außerdem immer eine Woche Puffer für Rückfragen und Korrekturen ein.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-url">hausbaukurs.de/kurs</span>
+    <span class="footer-page">8</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     FEHLER 7
+══════════════════════════════════ -->
+<div class="page content-page">
+
+  <div class="accent-bar"></div>
+  <div class="logo"><img src="logo.png" alt="Hausbaukurs"></div>
+
+  <div class="page-tag">
+    <span class="page-tag-diamond">♦</span>
+    <span class="page-tag-text">Fehler 7 von 7</span>
+  </div>
+
+  <p class="error-number">Fehler 7</p>
+  <h2 class="error-headline">Beim Planer nur auf <span class="accent">den Preis schauen</span></h2>
+
+  <p class="body-text">Das günstigste Angebot gewinnt. Das ist verständlich, denn ein Hausbau kostet genug. Aber günstige Angebote haben fast immer einen Grund. Und dieser Grund fällt dir meistens auf der Baustelle auf die Füße.</p>
+
+  <p class="section-head">Was ein ungewöhnlich niedriges Angebot oft bedeutet</p>
+  <ul class="bullet-list">
+    <li><strong>Lücken im Leistungsverzeichnis:</strong> Positionen fehlen bewusst, um günstiger zu wirken. Wer das nicht erkennt, kauft diese Leistungen später als teure Nachträge nach.</li>
+    <li><strong>Minderqualität pauschal erlaubt:</strong> Ist kein Hersteller und keine Qualitätsstufe definiert, darf der Unternehmer die billigste verfügbare Variante verbauen.</li>
+    <li><strong>Keine Kapazitätsreserven:</strong> Kleine oder finanziell schwache Unternehmen schieben profitablere Projekte vor. Dein Bau wartet, sofern keine Vertragsstrafe vereinbart ist.</li>
+    <li><strong>Subunternehmer ohne Kontrolle:</strong> Viele Generalunternehmer vergeben einen großen Teil der Leistungen an Subunternehmer weiter. Wer diese sind und welche Qualifikationen sie haben, erfährst du oft nicht.</li>
+  </ul>
+
+  <p class="section-head">Worauf du wirklich achtest: Checkliste für die Auswahl</p>
+  <table>
+    <thead>
+      <tr><th>Kriterium</th><th>Was du konkret prüfst</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Referenzen</td><td>Mindestens 3 fertige Projekte. Bauherren wirklich anrufen, nicht nur Fotos sehen.</td></tr>
+      <tr><td>Termintreue</td><td>Wurden die Referenzprojekte in der vereinbarten Zeit fertig?</td></tr>
+      <tr><td>Leistungsverzeichnis</td><td>Alle Gewerke vollständig aufgeführt? Materialien konkret benannt?</td></tr>
+      <tr><td>Zahlungsplan</td><td>Abschläge an tatsächlichen Baufortschritt geknüpft, nicht an Kalenderdaten?</td></tr>
+      <tr><td>Sicherheit</td><td>Welche Sicherheit wird gestellt, in welcher Form und in welcher Höhe?</td></tr>
+      <tr><td>Bonität</td><td>Handelsregisterauszug und Creditreform-Auskunft einholen</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p class="callout-label">Das größte Risiko</p>
+    <p>Ein Bauunternehmer, der während deines Baus insolvent wird, hinterlässt dir eine halbfertige Baustelle. Die bereits geleisteten Zahlungen sind verloren. Ein neuer Unternehmer für eine halbfertige Baustelle kostet bis zu <strong>40 % mehr</strong> als ein normaler Auftrag. Eine Fertigstellungsbürgschaft ist ein sehr wichtiger Schutzbaustein. Daneben schützen dich auch ein sorgfältiger Zahlungsplan, Einbehalte und die gesetzlichen Sicherheitsrechte nach § 650m BGB.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-url">hausbaukurs.de/kurs</span>
+    <span class="footer-page">9</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     CTA
+══════════════════════════════════ -->
+<div class="page cta-page">
+  <div class="cta-inner">
+
+    <div style="position:relative;z-index:2;margin-bottom:10mm;">
+      <img src="logo.png" alt="Hausbaukurs" style="height:26px;width:auto;opacity:0.6;">
+    </div>
+
+    <p class="cta-eyebrow">Nächster Schritt</p>
+    <h2 class="cta-headline">Triff die richtigen<br>Entscheidungen<br>beim <span class="accent">Hausbau.</span></h2>
+
+    <p class="cta-body">Diese 7 Fehler sind kein vollständiges Bild. Ein Hausbau hat hunderte Entscheidungen. Genau deswegen haben wir den Hausbaukurs gebaut: unabhängig, neutral, für Erst-Bauherren.</p>
+
+    <ul class="cta-list">
+      <li>100+ Erklärvideos, von der Planung bis zur Schlüsselübergabe</li>
+      <li>9 Kapitel: Finanzierung, Grundstück, Gewerke, Haustechnik und mehr</li>
+      <li>9 Tools: Baukosten-Übersicht, Mängelprotokoll, Bauablaufplaner</li>
+      <li>15 Checklisten für jeden Schritt</li>
+      <li>Entwickelt mit Architekt, Baubiologin, Finanzierungsberater und Fachanwalt</li>
+    </ul>
+
+    <div class="coupon-block">
+      <div class="coupon-left">
+        <p class="coupon-label">Exklusiver Rabattcode</p>
+        <p class="coupon-code">GWPB-TTVHB-M4KP</p>
+      </div>
+      <div class="coupon-right">
+        <p class="coupon-old">299 €</p>
+        <p class="coupon-new">249 €</p>
+        <p class="coupon-note">14 Tage Geld-zurück</p>
+      </div>
+    </div>
+
+    <p class="cta-url-line">hausbaukurs.de/kurs</p>
+
+    <p class="cta-footer">Hausbaukurs.de · The Good Home UG · Siemensstraße 16 · 48308 Senden · hi@hausbaukurs.de</p>
+
+  </div>
+</div>
+
+
+</body>
+</html>
